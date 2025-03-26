@@ -7,20 +7,23 @@ const articlesList = [
   "Article5",
 ];
 
-const input = (
-  <input
-    type="text"
-    className="edit_input"
-    name="EditArticle"
-    id="EditArticle"
-    aria-describedby="article_helper"
-  />
-);
-
 export default function App() {
   const [newArticle, setNewArticle] = useState("");
   const [articles, setArticles] = useState(articlesList);
   const [editingArticleIndex, setEditingArticleIndex] = useState(null);
+  const [saveArticle, setSaveArticle] = useState("");
+
+  const input = (
+    <input
+      type="text"
+      className="edit_input"
+      name="EditArticle"
+      id="EditArticle"
+      aria-describedby="article_helper"
+      value={saveArticle}
+      onChange={(e) => setSaveArticle(e.target.value)}
+    />
+  );
 
   function handleFormSubmit(e) {
     e.preventDefault();
@@ -45,6 +48,15 @@ export default function App() {
     console.log(`I'm edit button n°${index}`);
     setEditingArticleIndex(index);
     console.log(editingArticleIndex);
+    setSaveArticle(articles[index]);
+  }
+
+  function handleSaveEdit() {
+    const updatedArticles = [...articles];
+    updatedArticles[editingArticleIndex] = saveArticle;
+    setArticles(updatedArticles);
+    setEditingArticleIndex(null);
+    setSaveArticle("");
   }
 
   return (
