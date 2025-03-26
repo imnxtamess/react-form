@@ -18,6 +18,13 @@ export default function App() {
     setNewArticle("");
   }
 
+  function handleClick(index) {
+    console.log(`I'm button n°${index}`);
+    const filteredList = articles.filter((article, i) => i !== index);
+    setArticles(filteredList);
+    console.log(filteredList);
+  }
+
   return (
     <>
       <div className="container">
@@ -29,13 +36,19 @@ export default function App() {
               className="list-group-item d-flex justify-content-between align-items-center"
             >
               {article}
-              <span className="badge bg-danger badge-pill">X</span>
+              <span
+                onClick={() => {
+                  handleClick(index);
+                }}
+                className="badge bg-danger badge-pill"
+              >
+                X
+              </span>
             </li>
           ))}
         </ul>
         <form className="mt-5 row" onSubmit={handleFormSubmit}>
           <div className="col-10">
-            <label htmlFor="newAritcle">Article</label>
             <input
               type="text"
               className="form-control"
@@ -54,7 +67,7 @@ export default function App() {
           </div>
           <button
             type="submit"
-            className="btn btn-primary col-2 align-self-center"
+            className="btn btn-primary col-2 align-self-start"
           >
             Submit
           </button>
