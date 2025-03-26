@@ -13,9 +13,13 @@ export default function App() {
   function handleFormSubmit(e) {
     e.preventDefault();
     console.log(newArticle);
-    setArticles([...articles, newArticle]);
-    console.log(articles);
-    setNewArticle("");
+    if (newArticle.length <= 2) {
+      alert("Your title needs to be atleast 3 characters long");
+    } else {
+      setArticles([...articles, newArticle]);
+      console.log(articles);
+      setNewArticle("");
+    }
   }
 
   function handleClick(index) {
