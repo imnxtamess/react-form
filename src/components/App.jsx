@@ -71,14 +71,21 @@ export default function App() {
             >
               {editingArticleIndex === index ? input : article}
               <div className="d-flex gap-2">
-                <span
-                  onClick={() => {
-                    handleClickEdit(index);
-                  }}
-                  className="badge bg-light badge-pill"
-                >
-                  {editingArticleIndex === index ? "✔️" : "✏️"}
-                </span>
+                {editingArticleIndex === index ? (
+                  <span
+                    className="badge bg-light badge-pill"
+                    onClick={handleSaveEdit}
+                  >
+                    ✔️
+                  </span>
+                ) : (
+                  <span
+                    className="badge bg-light badge-pill"
+                    onClick={() => handleClickEdit(index)}
+                  >
+                    ✏️
+                  </span>
+                )}
                 <span
                   onClick={() => {
                     handleClickDelete(index);
