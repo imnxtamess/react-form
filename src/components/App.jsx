@@ -9,6 +9,7 @@ const articlesList = [
 export default function App() {
   const [newArticle, setNewArticle] = useState("");
   const [articles, setArticles] = useState(articlesList);
+  const [editingArticleIndex, setEditingArticleIndex] = useState(null);
 
   function handleFormSubmit(e) {
     e.preventDefault();
@@ -22,11 +23,17 @@ export default function App() {
     }
   }
 
-  function handleClick(index) {
+  function handleClickDelete(index) {
     console.log(`I'm button n°${index}`);
     const filteredList = articles.filter((article, i) => i !== index);
     setArticles(filteredList);
     console.log(filteredList);
+  }
+
+  function handleClickEdit(index) {
+    console.log(`I'm edit button n°${index}`);
+    setEditingArticleIndex(index);
+    console.log(editingArticleIndex);
   }
 
   return (
@@ -40,14 +47,24 @@ export default function App() {
               className="list-group-item d-flex justify-content-between align-items-center"
             >
               {article}
-              <span
-                onClick={() => {
-                  handleClick(index);
-                }}
-                className="badge bg-danger badge-pill"
-              >
-                X
-              </span>
+              <div className="d-flex gap-2">
+                <span
+                  onClick={() => {
+                    handleClickEdit(index);
+                  }}
+                  className="badge bg-primary badge-pill"
+                >
+                  ✏️
+                </span>
+                <span
+                  onClick={() => {
+                    handleClickDelete(index);
+                  }}
+                  className="badge bg-dark badge-pill"
+                >
+                  ❌
+                </span>
+              </div>
             </li>
           ))}
         </ul>
