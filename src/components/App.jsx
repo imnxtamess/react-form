@@ -16,6 +16,27 @@ export default function App() {
             </li>
           ))}
         </ul>
+        <form className="mt-5 row">
+          <div className="col-10">
+            <input
+              type="text"
+              className="form-control"
+              name="newArticle"
+              id="newArticle"
+              aria-describedby="article_helper"
+              placeholder="Add a new Article"
+            />
+            <small id="article_helper" className="form-text text-muted">
+              Type the article title above
+            </small>
+          </div>
+          <button
+            type="submit"
+            className="btn btn-primary col-2 align-self-start"
+          >
+            Submit
+          </button>
+        </form>
       </div>
     </>
   );
