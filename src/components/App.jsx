@@ -6,6 +6,17 @@ const articlesList = [
   "Article4",
   "Article5",
 ];
+
+const input = (
+  <input
+    type="text"
+    className="edit_input"
+    name="EditArticle"
+    id="EditArticle"
+    aria-describedby="article_helper"
+  />
+);
+
 export default function App() {
   const [newArticle, setNewArticle] = useState("");
   const [articles, setArticles] = useState(articlesList);
@@ -46,21 +57,21 @@ export default function App() {
               key={`article-${index}`}
               className="list-group-item d-flex justify-content-between align-items-center"
             >
-              {article}
+              {editingArticleIndex === index ? input : article}
               <div className="d-flex gap-2">
                 <span
                   onClick={() => {
                     handleClickEdit(index);
                   }}
-                  className="badge bg-primary badge-pill"
+                  className="badge bg-light badge-pill"
                 >
-                  ✏️
+                  {editingArticleIndex === index ? "✔️" : "✏️"}
                 </span>
                 <span
                   onClick={() => {
                     handleClickDelete(index);
                   }}
-                  className="badge bg-dark badge-pill"
+                  className="badge bg-light badge-pill"
                 >
                   ❌
                 </span>
